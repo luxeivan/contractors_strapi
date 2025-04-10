@@ -17,13 +17,26 @@
     "user": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "contractor"
     },
     "contracts": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::contract.contract",
       "mappedBy": "contractor"
+    },
+    "inn": {
+      "type": "string",
+      "regex": "\\d",
+      "maxLength": 10,
+      "minLength": 10
+    },
+    "kpp": {
+      "type": "string",
+      "regex": "\\d",
+      "minLength": 9,
+      "maxLength": 9
     }
   }
 }

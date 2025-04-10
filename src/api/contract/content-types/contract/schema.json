@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contract",
     "pluralName": "contracts",
-    "displayName": "contract"
+    "displayName": "contract",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -27,6 +28,21 @@
       "relation": "oneToMany",
       "target": "api::step.step",
       "mappedBy": "contract"
+    },
+    "document": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "social": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

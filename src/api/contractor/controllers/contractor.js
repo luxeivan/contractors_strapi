@@ -10,7 +10,7 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::contractor.contractor', ({ strapi }) => ({
     // Method 1: Creating an entirely custom action
 
-    async find(ctx) {
+    async myFind(ctx) {
         let sanitizedQueryParams = await this.sanitizeQuery(ctx);
         const { id } = ctx.state.user;
         sanitizedQueryParams.filters = {
@@ -22,14 +22,15 @@ module.exports = createCoreController('api::contractor.contractor', ({ strapi })
         }
         const entity = await strapi.service('api::contractor.contractor').find(sanitizedQueryParams)
         const sanitizeResult = await this.sanitizeOutput(entity)
-
+    
         try {
             ctx.body = sanitizeResult;
         } catch (err) {
             ctx.body = err;
         }
+
     },
-    async findOne(ctx) {
+    async myFindOne(ctx) {
         const { id } = ctx.state.user;
         // const entity = await strapi.entityService.findOne('api::contractor.contractor', ctx.params.id);
         const entity = await strapi.service('api::contractor.contractor').findOne(ctx.params.id, { populate: ["user","contracts"] })
