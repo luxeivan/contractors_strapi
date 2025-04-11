@@ -43,6 +43,9 @@
     "social": {
       "type": "boolean",
       "default": false
+    },
+    "dateContract": {
+      "type": "date"
     }
   }
 }
