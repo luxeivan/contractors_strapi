@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purposes",
+  "info": {
+    "singularName": "purpose",
+    "pluralName": "purposes",
+    "displayName": "purpose",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "magenta",
+        "red",
+        "volcano",
+        "orange",
+        "gold",
+        "lime",
+        "green",
+        "cyan",
+        "blue",
+        "geekblue",
+        "purple"
+      ]
+    }
+  }
+}
