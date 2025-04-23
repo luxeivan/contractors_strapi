@@ -38,7 +38,7 @@ module.exports = createCoreController('api::contractor.contractor', ({ strapi })
             if (entity.user.id !== id) {
                 ctx.body = { status: "error" };
             } else {
-                console.log(entity)
+                // console.log(entity)
                 const sanitizeResult = await this.sanitizeOutput(entity, ctx)
                 ctx.body = sanitizeResult;
             }
