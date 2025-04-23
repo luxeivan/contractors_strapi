@@ -14,9 +14,6 @@
     "name": {
       "type": "string"
     },
-    "number": {
-      "type": "integer"
-    },
     "description": {
       "type": "text"
     },

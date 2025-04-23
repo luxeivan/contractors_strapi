@@ -46,6 +46,21 @@
     },
     "dateContract": {
       "type": "date"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "purpose": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::purpose.purpose"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "numberTask": {
+      "type": "string"
     }
   }
 }

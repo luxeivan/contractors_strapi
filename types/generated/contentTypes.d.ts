@@ -381,6 +381,8 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    comment: Schema.Attribute.Text;
+    completed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     contractor: Schema.Attribute.Relation<
       'manyToOne',
       'api::contractor.contractor'
@@ -398,7 +400,9 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     number: Schema.Attribute.String;
+    numberTask: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    purpose: Schema.Attribute.Relation<'oneToOne', 'api::purpose.purpose'>;
     social: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     steps: Schema.Attribute.Relation<'oneToMany', 'api::step.step'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -419,6 +423,7 @@ export interface ApiContractorContractor extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    comment: Schema.Attribute.Text;
     contracts: Schema.Attribute.Relation<'oneToMany', 'api::contract.contract'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -451,6 +456,50 @@ export interface ApiContractorContractor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPurposePurpose extends Struct.CollectionTypeSchema {
+  collectionName: 'purposes';
+  info: {
+    description: '';
+    displayName: 'purpose';
+    pluralName: 'purposes';
+    singularName: 'purpose';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    color: Schema.Attribute.Enumeration<
+      [
+        'magenta',
+        'red',
+        'volcano',
+        'orange',
+        'gold',
+        'lime',
+        'green',
+        'cyan',
+        'blue',
+        'geekblue',
+        'purple',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::purpose.purpose'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStepStep extends Struct.CollectionTypeSchema {
   collectionName: 'steps';
   info: {
@@ -472,7 +521,6 @@ export interface ApiStepStep extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::step.step'> &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    number: Schema.Attribute.Integer;
     photos: Schema.Attribute.Media<'images' | 'videos', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -996,6 +1044,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::contract.contract': ApiContractContract;
       'api::contractor.contractor': ApiContractorContractor;
+      'api::purpose.purpose': ApiPurposePurpose;
       'api::step.step': ApiStepStep;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

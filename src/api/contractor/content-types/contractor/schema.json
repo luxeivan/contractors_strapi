@@ -37,6 +37,9 @@
       "regex": "\\d",
       "minLength": 9,
       "maxLength": 9
+    },
+    "comment": {
+      "type": "text"
     }
   }
 }
